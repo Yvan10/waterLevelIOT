@@ -1,0 +1,30 @@
+{
+  "name": "zephyrus/framework",
+  "description": "Basic framework for the Zephyrus core",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Tucker",
+      "email": "davidt2003@msn.com"
+    }
+  ],
+  "require": {
+    "zephyrus/zephyrus": "2.0.*",
+    "ext-intl": "*",
+    "ext-zip": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.*.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Models\\": "app/Models",
+      "Controllers\\": "app/Controllers"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "nodejs-php-fallback/nodejs-php-fallback": true
+    }
+  }
+}

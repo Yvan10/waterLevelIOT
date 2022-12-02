@@ -1,0 +1,12 @@
+{
+  "success": {
+    "added" : "Insertion complétée avec succès.",
+    "modified" : "Modification complétée avec succès.",
+    "deleted" : "Suppression complétée avec succès.",
+    "setting" : {
+      "code" : {
+        "valid" : "Code valide"
+      }
+    }
+  }
+}

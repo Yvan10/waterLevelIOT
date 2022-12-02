@@ -1,0 +1,53 @@
+mixin list(instance, hasSelection)
+  if hasSelection === undefined
+    -hasSelection = false
+  if instance.rows
+    .table-wrapper
+      table.table.table-sm.actionable
+        +list-sortable-header(instance, true, hasSelection)
+        tbody
+          each row in instance.rows
+            block
+      if instance.pager
+        .pager-wrapper
+          div Page #{instance.pager.currentPage} de #{instance.pager.maxPage}
+          !=instance.pager.display()
+
+mixin list-simple(instance, hasSelection)
+  if hasSelection === undefined
+    -hasSelection = false
+  if instance.rows
+    .table-wrapper
+      table.table.table-sm
+        +list-sortable-header(instance, false, hasSelection)
+        tbody
+          each row in instance.rows
+            block
+      if instance.pager
+        .pager-wrapper
+          div Page #{instance.pager.currentPage} de #{instance.pager.maxPage}
+          !=instance.pager.display()
+
+mixin list-sortable-header(instance, hasAction, hasSelection)
+  thead
+    tr
+      each header, i in instance.headers
+        th(class=((header.align !== "") ? "text-" + header.align : ""))
+          if hasSelection && i === 0
+            .pretty.p-default.p-smooth
+              input(type='checkbox')
+              .state: label
+          if header.sort != null
+            if in_array(header.sort, array_keys(instance.sorts))
+              if instance.sorts[header.sort] === "asc"
+                a(href=href("sorts[" + header.sort + "]=desc"))!=header.title
+                i.fa.fa-chevron-down
+              else
+                a(href=href("sorts[" + header.sort + "]=asc"))!=header.title
+                i.fa.fa-chevron-up
+            else
+              a(href=href("sorts[" + header.sort + "]=asc"))!=header.title
+          else
+            !=header.title
+      if hasAction
+        th

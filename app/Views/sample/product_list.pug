@@ -1,0 +1,11 @@
+extends ../sample-layout
+
+block content
+  +list(list)
+    tr
+      td(style="width: 450px;")
+        a(href="/products/" + row.product_id)!=list.mark(row.name)
+      td(style="width: 380px;")!=list.mark(row.provider)
+      td.text-right=format('money', row.price)
+      td
+        +button-list-edit("/products/" + row.product_id + "/edit")

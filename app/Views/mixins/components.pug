@@ -1,0 +1,15 @@
+mixin button-list(url, icon, tooltip, enabled)
+  if enabled === undefined
+    -enabled = true
+  if enabled
+    a.edit(href=url data-toggle="tooltip" title=tooltip)&attributes(attributes): i.fa(class="fa-" + icon)
+  else
+    a.not-available.edit(href=url data-toggle="tooltip" title=tooltip)&attributes(attributes): i.fa(class="fa-" + icon)
+
+mixin button-list-edit(url, enabled)
+  if enabled === undefined
+    -enabled = true
+  if enabled
+    a.edit(href=url data-toggle="tooltip" title="Modifier")&attributes(attributes): i.fa.fa-pencil-alt
+  else
+    a.edit.not-available(href=url data-toggle="tooltip" title="Modifier")&attributes(attributes): i.fa.fa-pencil-alt
