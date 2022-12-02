@@ -1,15 +1,31 @@
-SET search_path TO public;
+SET search_path TO framework;
 
--- ##################################################################################################################
--- PRODUCTS (EXAMPLE TABLE)
--- ##################################################################################################################
-CREATE TABLE product
+create table "user"
 (
-    product_id SERIAL PRIMARY KEY,
-    provider VARCHAR(2048) NOT NULL,
-    brand VARCHAR(1024) NOT NULL,
-    name VARCHAR(1024) NOT NULL,
-    price DECIMAL(20, 8) NOT NULL,
-    created_at TIMESTAMP DEFAULT now(),
-    updated_at TIMESTAMP DEFAULT NULL
+    email    varchar(255) not null,
+    password varchar(255) not null,
+    username varchar(255) not null,
+    id       serial
+        constraint user_pk
+            primary key
 );
+
+alter table "user"
+    owner to dev;
+
+create unique index user_id_uindex
+    on "user" (id);
+
+create table "waterLevel"
+(
+    id   serial
+        constraint waterlevel_pk
+            primary key,
+    data varchar(255) not null
+);
+
+alter table "waterLevel"
+    owner to dev;
+
+create unique index waterlevel_id_uindex
+    on "waterLevel" (id);
