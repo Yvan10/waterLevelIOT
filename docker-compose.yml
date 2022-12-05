@@ -30,6 +30,8 @@ services:
     restart: 'always'
     ports:
       - "5432:5432"
+    expose:
+      - "5432"
     environment:
       POSTGRES_DB: 'framework'
       POSTGRES_USER: 'dev'
