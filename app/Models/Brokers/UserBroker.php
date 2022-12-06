@@ -22,15 +22,15 @@ class UserBroker extends Broker
 
     public function insertData(stdClass $data): int
     {
-        $sql = 'insert into "waterLevel" (data) values (?) returning id';
+        $sql = 'insert into "waterLevel" (data) values (?) ORDER BY id desc LIMIT 1 returning id';
         return $this->selectSingle($sql, [
             $data->distance
         ])->id;
     }
 
     public function findUser(stdClass $user) {
-        $sql = 'SELECT password,id FROM  "user"  WHERE username = ? ';
-        return $this->selectSingle($sql, [$user->username]);
+        $sql = 'SELECT password,id FROM  "user"  WHERE email = ? ';
+        return $this->selectSingle($sql, [$user->email]);
     }
 
 

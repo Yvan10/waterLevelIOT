@@ -24,7 +24,7 @@ class LoginController extends Controller
     public function authentify() {
         $broker = new UserBroker();
         $form = $this->buildForm();
-        $form->field('username')->validate(Rule::notEmpty('veillez remplir les champs'));
+        $form->field('email')->validate(Rule::notEmpty('veillez remplir les champs'));
         $form->field('password')->validate(Rule::notEmpty('veillez remplir les champs'));
         if(!$form->verify()) {
             Flash::error($form->getErrorMessages());
