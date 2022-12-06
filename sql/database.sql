@@ -1,3 +1,5 @@
+SET search_path TO public;
+
 create table "user"
 (
     id       serial
