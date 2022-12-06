@@ -21,23 +21,23 @@ class LoginController extends Controller
         $this->post("/api/v1/data","getData");
     }
 
-    public function authentify() {
+    public function authentify(): Response {
         $broker = new UserBroker();
         $form = $this->buildForm();
-        $form->field('username')->validate(Rule::notEmpty('veillez remplir les champs'));
-        $form->field('password')->validate(Rule::notEmpty('veillez remplir les champs'));
-        if(!$form->verify()) {
-            Flash::error($form->getErrorMessages());
-            return $this->redirect("/login");
-        }
+//        $form->field('email')->validate(Rule::notEmpty('veillez remplir les champs'));
+//        $form->field('password')->validate(Rule::notEmpty('veillez remplir les champs'));
+//        if(!$form->verify()) {
+//            return $this->json([
+//                "validForm"=>false
+//            ]);
+//        }
         if (Cryptography::verifyHashedPassword($form->getValue('password'), $broker->findUser($form->buildObject())->password)) {
             return $this->json([
-                "getUser" => true
+                "user" => "true"
             ]);
         }else{
-            Flash::error("Authenfication invalid");
             return $this->json([
-                "getUser" => false
+                "user" => "false"
             ]);
         }
     }

@@ -30,7 +30,10 @@ services:
     restart: 'always'
     ports:
       - "5432:5432"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 790c9eb27630fb1f0211f4a4fdd86d7d7d158aa2
     expose:
       - "5432"
     environment:
