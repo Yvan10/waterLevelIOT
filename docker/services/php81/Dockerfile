@@ -1,5 +1,5 @@
 FROM php:8.1-apache-bullseye
-
+USER root
 # Install utilities and libraries
 RUN apt-get update && apt-get install -y \
     apt-utils wget build-essential cron git curl zip openssl dialog locales \
