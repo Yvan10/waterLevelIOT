@@ -33,15 +33,19 @@ class LoginController extends Controller
 //        }
         if (Cryptography::verifyHashedPassword($form->getValue('password'), $broker->findUser($form->buildObject())->password)) {
             return $this->json([
-                "user" => $broker->findUserInfo($form->buildObject()),
+                "email" => $broker->findUserInfo($form->buildObject())->email,
+                "username" => $broker->findUserInfo($form->buildObject())->username,
                 "waterLevel" => $broker->getCalibrateData(),
-                "refresh" => $broker->refreshCalibrateData()
             ]);
         }else{
             return $this->json([
                 "user" => "invalid authentification"
             ]);
         }
+    }
+
+    public function deleteData() {
+       // "refresh" => $broker->refreshCalibrateData()
     }
 
     public function getData() {
