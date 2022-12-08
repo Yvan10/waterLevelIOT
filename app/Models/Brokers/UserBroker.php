@@ -28,8 +28,26 @@ class UserBroker extends Broker
         ])->id;
     }
 
+    public function getCalibrateData(){
+        $sql = 'SELECT data FROM  "waterLevel"';
+        return $this->selectSingle($sql);
+    }
+
+    public function refreshCalibrateData(){
+        $sql = 'DELETE FROM "waterLevel"';
+        return $this->query($sql);
+    }
+
+
+
     public function findUser(stdClass $user) {
         $sql = 'SELECT password,id FROM  "user"  WHERE email = ? ';
+        return $this->selectSingle($sql, [$user->email]);
+    }
+
+
+    public function findUserInfo(stdClass $user) {
+        $sql = 'SELECT * FROM  "user"  WHERE email = ? ';
         return $this->selectSingle($sql, [$user->email]);
     }
 

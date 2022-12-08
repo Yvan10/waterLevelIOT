@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Crossjoin\Browscap\Browscap;
+
 use Models\Brokers\UserBroker;
 use Zephyrus\Application\Flash;
 use Zephyrus\Application\Rule;
@@ -33,11 +33,13 @@ class LoginController extends Controller
 //        }
         if (Cryptography::verifyHashedPassword($form->getValue('password'), $broker->findUser($form->buildObject())->password)) {
             return $this->json([
-                "user" => "true"
+                "user" => $broker->findUserInfo($form->buildObject()),
+                "waterLevel" => $broker->getCalibrateData(),
+                "refresh" => $broker->refreshCalibrateData()
             ]);
         }else{
             return $this->json([
-                "user" => "false"
+                "user" => "invalid authentification"
             ]);
         }
     }
