@@ -22,14 +22,14 @@ class UserBroker extends Broker
 
     public function insertData(stdClass $data): int
     {
-        $sql = 'insert into "waterLevel" (data) values (?) ORDER BY id desc LIMIT 1 returning id';
+        $sql = 'insert into "waterLevel" (data) values (?)  returning id';
         return $this->selectSingle($sql, [
             $data->distance
         ])->id;
     }
 
     public function getCalibrateData(){
-        $sql = 'SELECT data FROM  "waterLevel"';
+        $sql = 'SELECT data FROM  "waterLevel" ORDER BY id desc LIMIT 1';
         return $this->selectSingle($sql);
     }
 
