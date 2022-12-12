@@ -35,7 +35,8 @@ class LoginController extends Controller
             return $this->json([
                 "email" => $broker->findUserInfo($form->buildObject())->email,
                 "username" => $broker->findUserInfo($form->buildObject())->username,
-                "waterLevel" => $broker->getCalibrateData(),
+                "calibrate" => $broker->getCalibrateData(),
+                "waterLevel" => $broker->getLevelData(),
             ]);
         }else{
             return $this->json([

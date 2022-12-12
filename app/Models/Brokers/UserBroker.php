@@ -29,7 +29,12 @@ class UserBroker extends Broker
     }
 
     public function getCalibrateData(){
-        $sql = 'SELECT data FROM  "waterLevel" ORDER BY id desc LIMIT 1';
+        $sql = 'SELECT data FROM  "waterLevel" ORDER BY id LIMIT 1';
+        return $this->selectSingle($sql);
+    }
+
+    public function getLevelData(){
+        $sql = 'SELECT data FROM  "waterLevel" ORDER BY id DESC LIMIT 1';
         return $this->selectSingle($sql);
     }
 
